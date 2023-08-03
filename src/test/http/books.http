@@ -1,0 +1,11 @@
+### all books
+GET http://localhost:8080/api/books
+
+### present book
+GET http://localhost:8080/api/books?title=Domain Driven Design
+
+### missing book
+GET http://localhost:8080/api/books?title=Clean code
+
+### books which takes long time to find
+GET http://localhost:8080/api/books?title=Fundamental Algorithms
