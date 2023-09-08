@@ -1,10 +1,12 @@
 package pl.akolata.metrics;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Repository
 public class BooksRepository {
 
@@ -21,6 +23,7 @@ public class BooksRepository {
     }
 
     public Long countBooks() {
+        log.info("BooksRepository#countBooks counting books");
         return (long) BOOKS.size();
     }
 }
