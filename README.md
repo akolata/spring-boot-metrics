@@ -47,6 +47,11 @@ hey -c 10 -n 50 "http://localhost:8080/api/books?title=Domain%20Driven%20Design"
 
 ## Example metrics/queries to monitor
 
+Custom metrics:
+* `books_service_books_in_store_count` - gauge - a current number of books in store
+* `books_service_books_search_by_title` - timer showing how long does it take to search for books
+* `books_service_api_books_get_count` - counter - a number of requests to `GET /api/books` endpoint
+
 ### HTTP graph
 * avg response time for statuses other than 5..: `sum(rate(http_server_requests_seconds_sum{status!~"5.."}[60s])) / sum(rate(http_server_requests_seconds_count{status!~"5.."}[60s]))`, label `avg`
 * the longest response time for statues other than 5..: `max(http_server_requests_seconds_max{status!~"5.."})`, label `max`
