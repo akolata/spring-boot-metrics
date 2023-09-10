@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * A test controller created to present a chart showing HTTP traffic by an endpoint.
+ */
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/test")

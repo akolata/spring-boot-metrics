@@ -26,7 +26,7 @@ public class BooksController {
         log.info("Received request: GET /api/books?title=" + title);
         List<Book> books = booksService.findByTitle(title);
 
-        // Chosen tags might not be the best - this is only for demonstration purposes
+        // Chosen tags might not be the best - this is only for demonstration purposes, not according to the best monitoring practices
         Counter counter = Counter.builder(MetricUtil.METRIC_API_BOOKS_GET_COUNT)
             .tag(MetricUtil.TAG_TITLE, MetricUtil.getTagTitle(title))
             .tag(MetricUtil.TAG_MATCHING_BOOKS, String.valueOf(books.size()))

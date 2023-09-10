@@ -24,11 +24,21 @@ public class BooksService {
         this.booksRepository = booksRepository;
         this.meterRegistry = meterRegistry;
 
+        // Method booksRepository::countBooks will be executed every 15s - Prometheus scrape_interval setting
         Gauge.builder(MetricUtil.METRIC_BOOKS_IN_STORE_COUNT, booksRepository::countBooks)
             .description("A current number of books in store")
             .register(meterRegistry);
     }
 
+    /**
+     * This method simulates a search feature over some repository (database/Elasticsearch/whatever) for a books matching given title.
+     * Depending on a title, this thread will sleep for some predefined period of time.
+     * For 'Fundamental Algorithms' sleeping time is the longest, so that in Grafana it should be visible that searching for this title
+     * takes the most time.
+     *
+     * @param title book's title to search by
+     * @return a list of books matching the given title
+     */
     @SneakyThrows
     public List<Book> findByTitle(String title) {
         Tag titleTag = Tag.of(MetricUtil.TAG_TITLE, MetricUtil.getTagTitle(title));
@@ -55,7 +65,7 @@ public class BooksService {
         }
 
         timer.stop(Timer.builder(MetricUtil.METRIC_BOOKS_BY_TITLE_SEARCH)
-            .description("Times showing how long does it take to search for books")
+            .description("Timer showing how long does it take to search for books")
             .tags(List.of(titleTag))
             .register(meterRegistry));
 
