@@ -13,7 +13,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.m
 Go to `./docker/prometheus` directory and edit `prometheus.yml` file.  
 Update `scrape_configs[].static_configs[].targets` list under `books_app` job  
 with your IP address.  
-On MacOS you can use `ifconfig | grep "inet " | grep -v 127.0.0.1` command.
+On macOS you can use `ifconfig | grep "inet " | grep -v 127.0.0.1` command.
 
 After that in `./docker` directory run `docker-compose start` to start Prometheus and Grafana running in Docker.
 
